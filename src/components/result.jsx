@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
+
 export default function Result({search}){
     const [state, setState] = useState(false)
     const [w_info, setInfo] = useState(null)
@@ -32,21 +33,26 @@ export default function Result({search}){
         }
         notEmpty()
     }, [search])
-    useEffect(()=>{
-        console.log(w_info)
-    },[w_info])
-    return(<div>
+
+
+    return(<div className='weather-card'>
         {state ? (
-            <div>
+            <>
                 {w_info!=null && (
                     <>
-                        <h1 className="title">Resultados para: {search}</h1>
-                        <img src={w_info.current.condition.icon} alt="" />
-                        <h2>{w_info.location.country}</h2>
-                        <h2>{w_info.current.temp_c} C°</h2>
-                        <h2>{w_info.current.temp_f} F°</h2>
+                        {w_info['error'] !== undefined ? (
+                            <h1 className="w_search">No hay resultados</h1>
+                        ) : (
+                            <div className='result-container'>
+                                <h1 className="w_search">Resultados para: {search}</h1>
+                                <img src={w_info.current.condition.icon} alt="Condition icon" className="w_image"/>
+                                <h2 className='w_location'>{w_info.location.country} - {w_info.location.region}</h2>
+                                <h2 className='w_temp'>{w_info.current.temp_c} C° - {w_info.current.temp_f} F°</h2>
+                                <h2 className='w_wind'>{w_info.current.wind_kph} Km/h - {w_info.current.wind_mph} Milla/h</h2>
+                            </div>
+                        )}
                     </>)}
-            </div>
+            </>
         ):(
             <h1 className="title">Realiza una busqueda</h1>
         )}

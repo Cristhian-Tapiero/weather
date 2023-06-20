@@ -19,6 +19,12 @@
         width: 15%;
         border-top-right-radius: 15px;
         border-bottom-right-radius: 15px;
-        border: 1px solid black; 
+        border: 1px solid black;
+        background: linear-gradient(to right, #CECDCD 50%, transparent 50%) no-repeat right / 200%;
+        transition: background-position .3s ease;
+
+        &:hover{
+            background-position: left;
+        }
     }
 }

@@ -1,5 +1,6 @@
 @use 'weather';
 @use 'search';
+@use 'result';
 *,
 *::before,
 *::after{
@@ -40,8 +41,7 @@ input, input:focus{
     width: 100vw;
     height: 100dvh;
     overflow: hidden;
-    .text::selection{
-        background-color: #044604;
-        color: #ffff;
-    }
+    background-image: url(../assets/weather_back.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
